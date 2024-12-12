@@ -143,13 +143,13 @@ const ContactForm = () => {
         {/* input */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="flex flex-col">
-            <LabelInput htmlFor="firstname" text={"Firstname"} />
+            <LabelInput htmlFor="firstname" text={"Firstname *"} />
             <Input
               className={clsx({ "border-red-400": fieldsWithError.firstname })}
               name="firstname"
               id="firstname"
               type="text"
-              placeholder="Firstname *"
+              placeholder="Jhon"
             />
             {fieldsWithError.firstname && (
               <ErrorMessage message={fieldsWithError.firstname} />
@@ -161,18 +161,18 @@ const ContactForm = () => {
               name="lastname"
               id="lastname"
               type="text"
-              placeholder="Lastname"
+              placeholder="Doe"
             />
           </div>
 
           <div className="flex flex-col">
-            <LabelInput htmlFor="email" text={"Email"} />
+            <LabelInput htmlFor="email" text={"Email *"} />
             <Input
               className={clsx({ "border-red-400": fieldsWithError.email })}
               name="email"
               id="email"
               type="email"
-              placeholder="Email address *"
+              placeholder="example@gmail.com"
             />
             {fieldsWithError.email && (
               <ErrorMessage message={fieldsWithError.email} />
@@ -184,14 +184,14 @@ const ContactForm = () => {
               name="phone"
               id="phone"
               type="phone"
-              placeholder="Phone number"
+              placeholder="584248103737"
             />
           </div>
         </div>
         {/* select */}
 
         <label className="text-sm text-white/80 mb-2">
-          Select a service
+          <p className="mb-2">Select a service</p>
           <Select name="service">
             <SelectTrigger className="w-full">
               <SelectValue placeholder="Select a service" />

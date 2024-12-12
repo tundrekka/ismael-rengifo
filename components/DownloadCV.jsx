@@ -4,6 +4,7 @@ import { FiDownload } from "react-icons/fi";
 
 const DownloadCV = ({size, variant}) => {
   return (
+    <a href="/files/Ismael-cv-english.pdf" download>
     <Button
       variant={variant || "outline"}
       size={size || undefined}
@@ -13,6 +14,7 @@ const DownloadCV = ({size, variant}) => {
       <span id="download-cv-text">Download CV</span>
       <FiDownload aria-labelledby="download-cv-text" className={size === "lg" ? "text-xl" : "text-lg"} />
     </Button>
+    </a>
   );
 };
 

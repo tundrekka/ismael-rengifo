@@ -4,7 +4,7 @@ import { FiDownload } from "react-icons/fi";
 
 const DownloadCV = ({size, variant}) => {
   return (
-    <a href="/files/Ismael-cv-english.pdf" download>
+    <a href="/files/Ismael-Rengifo-CV-english.pdf" download>
     <Button
       variant={variant || "outline"}
       size={size || undefined}

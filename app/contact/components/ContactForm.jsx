@@ -1,29 +1,19 @@
 "use client";
-
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useState } from "react";
-import clsx from "clsx";
 import { Loader } from "lucide-react";
+import clsx from "clsx";
 
 const ErrorMessage = ({ message }) => {
-  return <span className="text-red-400 text-xs mt-2">{message}</span>;
+  return <span className="mt-2 text-xs text-red-400">{message}</span>;
 };
 
 const LabelInput = ({ htmlFor, text }) => {
   return (
-    <label className="text-sm text-white/80 mb-2" htmlFor={htmlFor}>
+    <label className="mb-2 text-sm text-white/80" htmlFor={htmlFor}>
       {text}
     </label>
   );
@@ -55,18 +45,12 @@ const ContactForm = () => {
       }
 
       // validate name is only letters and spaces
-      if (
-        data.get("firstname") &&
-        !/^[a-zA-Z\s]*$/.test(data.get("firstname"))
-      ) {
+      if (data.get("firstname") && !/^[a-zA-Z\s]*$/.test(data.get("firstname"))) {
         errorsObj.firstname = "Only letters and spaces";
       }
 
       // validate email
-      if (
-        data.get("email") &&
-        !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.get("email"))
-      ) {
+      if (data.get("email") && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.get("email"))) {
         errorsObj.email = "Invalid email";
       }
     };
@@ -99,14 +83,10 @@ const ContactForm = () => {
           console.log("error");
           response.json().then((data) => {
             if (Object.hasOwn(data, "errors")) {
-              errorsFormSpree = data["errors"]
-                .map((error) => error["message"])
-                .join(", ");
+              errorsFormSpree = data["errors"].map((error) => error["message"]).join(", ");
               setStatusMessage(errorsFormSpree);
             } else {
-              setStatusMessage(
-                "Oops! There was a problem submitting your form"
-              );
+              setStatusMessage("Oops! There was a problem submitting your form");
             }
           });
         }
@@ -120,10 +100,7 @@ const ContactForm = () => {
   };
   return (
     <>
-      <form
-        onSubmit={handleSubmit}
-        className="flex flex-col gap-6 p-4 lg:p-10 bg-[#27272c] rounded-xl"
-      >
+      <form onSubmit={handleSubmit} className="flex flex-col gap-6 rounded-xl bg-[#27272c] p-4 lg:p-10">
         <h3
           className={clsx("text-4xl text-accent", {
             "animate-pulse": formLoading,
@@ -132,16 +109,14 @@ const ContactForm = () => {
           <span>{"Let's"} work together</span>
 
           {formLoading && (
-            <span className="inline ml-2">
+            <span className="ml-2 inline">
               <Loader className="inline" />
             </span>
           )}
         </h3>
-        <p className="text-white/60">
-          Send me a message to start a new experience!
-        </p>
+        <p className="text-white/60">Send me a message to start a new experience!</p>
         {/* input */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
           <div className="flex flex-col">
             <LabelInput htmlFor="firstname" text={"Firstname *"} />
             <Input
@@ -151,18 +126,11 @@ const ContactForm = () => {
               type="text"
               placeholder="Jhon"
             />
-            {fieldsWithError.firstname && (
-              <ErrorMessage message={fieldsWithError.firstname} />
-            )}
+            {fieldsWithError.firstname && <ErrorMessage message={fieldsWithError.firstname} />}
           </div>
           <div className="flex flex-col">
             <LabelInput htmlFor="lastname" text={"Lastname"} />
-            <Input
-              name="lastname"
-              id="lastname"
-              type="text"
-              placeholder="Doe"
-            />
+            <Input name="lastname" id="lastname" type="text" placeholder="Doe" />
           </div>
 
           <div className="flex flex-col">
@@ -174,23 +142,16 @@ const ContactForm = () => {
               type="email"
               placeholder="example@gmail.com"
             />
-            {fieldsWithError.email && (
-              <ErrorMessage message={fieldsWithError.email} />
-            )}
+            {fieldsWithError.email && <ErrorMessage message={fieldsWithError.email} />}
           </div>
           <div className="flex flex-col">
             <LabelInput htmlFor="phone" text={"Phone"} />
-            <Input
-              name="phone"
-              id="phone"
-              type="phone"
-              placeholder="584248103737"
-            />
+            <Input name="phone" id="phone" type="phone" placeholder="584248103737" />
           </div>
         </div>
         {/* select */}
 
-        <label className="text-sm text-white/80 mb-2">
+        <label className="mb-2 text-sm text-white/80">
           <p className="mb-2">Select a service</p>
           <Select name="service">
             <SelectTrigger className="w-full">
@@ -199,9 +160,7 @@ const ContactForm = () => {
             <SelectContent>
               <SelectGroup>
                 <SelectItem value="web-development">Web Development</SelectItem>
-                <SelectItem value="pen-testing">
-                  Web Penetration Test
-                </SelectItem>
+                <SelectItem value="pen-testing">Web Penetration Test</SelectItem>
               </SelectGroup>
             </SelectContent>
           </Select>
@@ -211,15 +170,10 @@ const ContactForm = () => {
         <div className="flex flex-col">
           <LabelInput htmlFor="information" text={"Message"} />
 
-          <Textarea
-            id="information"
-            name="description-message"
-            className="h-[200px]"
-            placeholder="Type your message here."
-          />
+          <Textarea id="information" name="description-message" className="h-[200px]" placeholder="Type your message here." />
         </div>
         {/* btn */}
-        <div className="flex flex-wrap gap-4 items-center">
+        <div className="flex flex-wrap items-center gap-4">
           <Button
             type="submit"
             disabled={formLoading}
@@ -235,7 +189,7 @@ const ContactForm = () => {
               "Send message"
             )}
           </Button>
-          <span className="text-white/60 md:ml-3 text-sm">{statusMessage}</span>
+          <span className="text-sm text-white/60 md:ml-3">{statusMessage}</span>
         </div>
       </form>
     </>

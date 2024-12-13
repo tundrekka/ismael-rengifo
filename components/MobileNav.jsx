@@ -1,27 +1,21 @@
 "use client";
-
-import {
-  Sheet,
-  SheetContent,
-  SheetTrigger,
-  SheetClose,
-} from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet";
 import { usePathname } from "next/navigation";
-import Link from "next/link";
 import { CiMenuFries } from "react-icons/ci";
 import { navLinks } from "@/app/constants";
+import Link from "next/link";
 import DownloadCV from "./DownloadCV";
 
 const MobileNav = () => {
   const pathname = usePathname();
   return (
     <Sheet>
-      <SheetTrigger className="flex justify-center items-center">
+      <SheetTrigger className="flex items-center justify-center">
         <CiMenuFries className="text-[32px] text-accent" />
       </SheetTrigger>
       <SheetContent className="flex flex-col">
         {/* logo */}
-        <div className="mt-32 mb-40 text-center text-2xl">
+        <div className="mb-40 mt-32 text-center text-2xl">
           <SheetClose asChild>
             <Link href="/">
               <h1 className="text-4xl font-semibold">
@@ -31,16 +25,15 @@ const MobileNav = () => {
           </SheetClose>
         </div>
         {/* nav */}
-        <nav className="flex flex-col justify-center items-center gap-8">
+        <nav className="flex flex-col items-center justify-center gap-8">
           {navLinks.map((link, index) => {
             return (
               <SheetClose key={index} asChild>
                 <Link
                   href={link.path}
                   className={`${
-                    link.path === pathname &&
-                    "text-accent border-b-2 border-accent"
-                  } text-xl capitalize hover:text-accent transition-all`}
+                    link.path === pathname && "border-b-2 border-accent text-accent"
+                  } text-xl capitalize transition-all hover:text-accent`}
                 >
                   {link.name}
                 </Link>

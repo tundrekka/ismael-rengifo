@@ -1,11 +1,6 @@
 "use client";
-import { BsArrowUpRight, BsGithub } from "react-icons/bs";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
+import { BsArrowUpRight } from "react-icons/bs";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import Link from "next/link";
 
 const ButtonsClient = ({ project }) => {
@@ -18,8 +13,11 @@ const ButtonsClient = ({ project }) => {
           <Link target="_blank" aria-label="Live project" href={project.live}>
             <TooltipProvider delayDuration={100}>
               <Tooltip>
-                <TooltipTrigger aria-label="Live project" className="w-[70px] h-[70px] rounded-full bg-white/5 flex justify-center items-center group">
-                  <BsArrowUpRight className="text-white text-3xl group-hover:text-accent" />
+                <TooltipTrigger
+                  aria-label="Live project"
+                  className="group flex h-[70px] w-[70px] items-center justify-center rounded-full bg-white/5"
+                >
+                  <BsArrowUpRight className="text-3xl text-white group-hover:text-accent" />
                 </TooltipTrigger>
                 <TooltipContent>
                   <p id="live-project-text">Live project</p>

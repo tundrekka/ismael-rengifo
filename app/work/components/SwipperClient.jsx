@@ -15,7 +15,7 @@ const SwipperClient = ({ setProject, projects, isLoaded }) => {
     <Swiper
       spaceBetween={50}
       slidesPerView={1}
-      className="xl:h-[520px] mb-12"
+      className="mb-12 xl:h-[520px]"
       onSlideChange={handleSlideChange}
       onSwiper={(swiper) => handleSlideChange(swiper)}
       parallax
@@ -24,17 +24,17 @@ const SwipperClient = ({ setProject, projects, isLoaded }) => {
         projects.map((project, index) => {
           return (
             <SwiperSlide key={index} className="w-full">
-              <div className="h-[460px] relative rounded-lg group flex flex-col justify-center items-center bg-pink-50/20">
+              <div className="group relative flex h-[460px] flex-col items-center justify-center rounded-lg bg-pink-50/20">
                 {/* overlay */}
-                <div className="absolute top-0 bottom-0 w-full h-full bg-black/10 z-10"></div>
+                <div className="absolute bottom-0 top-0 z-10 h-full w-full bg-black/10"></div>
                 {/* image */}
-                <div className="relative w-full h-full ">
+                <div className="relative h-full w-full">
                   <Image
                     style={{ filter: "brightness(0.925)" }}
                     priority={index === 0}
                     src={project.image}
                     fill
-                    className="object-cover rounded-lg"
+                    className="rounded-lg object-cover"
                     alt={project.title + " website screenshot"}
                   />
                 </div>
@@ -44,11 +44,11 @@ const SwipperClient = ({ setProject, projects, isLoaded }) => {
         })
       ) : (
         <SwiperSlide className="w-full">
-          <div className="h-[460px] animate-pulse relative group flex justify-center items-center bg-pink-50/20">
+          <div className="group relative flex h-[460px] animate-pulse items-center justify-center bg-pink-50/20">
             {/* overlay */}
-            <div className="absolute top-0 bottom-0 w-full h-full bg-black/10 z-10"></div>
+            <div className="absolute bottom-0 top-0 z-10 h-full w-full bg-black/10"></div>
             {/* image */}
-            <div className="relative w-full h-full">
+            <div className="relative h-full w-full">
               {/* <Image
               src={project.image}
               fill

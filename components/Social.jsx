@@ -1,7 +1,6 @@
-import Link from "next/link";
-
 import { FaGithub, FaLinkedinIn, FaWhatsapp } from "react-icons/fa";
 import { SiUpwork } from "react-icons/si";
+import Link from "next/link";
 
 // https://www.upwork.com/freelancers/~012e8787e1e4b6df2e?viewMode=1
 

@@ -1,11 +1,10 @@
-import { PortfolioSkeleton } from '@/components/SkeletonLoader'
-import React from 'react'
+import { PortfolioSkeleton } from "@/components/SkeletonLoader";
 const loading = () => {
   return (
     <div className="container mx-auto">
       <PortfolioSkeleton />
     </div>
-  )
-}
+  );
+};
 
-export default loading
+export default loading;

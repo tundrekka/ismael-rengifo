@@ -1,5 +1,4 @@
 "use client";
-
 import { AnimatePresence, motion } from "framer-motion";
 import { usePathname } from "next/navigation";
 
@@ -14,7 +13,7 @@ const PageTransition = ({ children }) => {
             opacity: 0,
             transition: { delay: 1, duration: 0.4, ease: "easeInOut" },
           }}
-          className="h-screen w-screen fixed bg-primary top-0 pointer-events-none"
+          className="pointer-events-none fixed top-0 h-screen w-screen bg-primary"
         />
         {children}
       </div>

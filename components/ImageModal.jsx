@@ -10,42 +10,27 @@ const CertificateModal = ({ children, link, credlyLink, title, imgUrl }) => {
         <Dialog.Overlay className="fixed inset-0 bg-black/50" />
         <Dialog.Content
           style={{ transform: "translate(-50%, -50%)" }}
-          className="fixed w-[95vw] max-w-[800px] top-[50%] left-[50%] flex items-center justify-center"
+          className="fixed left-[50%] top-[50%] flex w-[95vw] max-w-[800px] items-center justify-center"
         >
-          <div className="bg-black/90 p-2 rounded">
+          <div className="rounded bg-black/90 p-2">
             <Dialog.Title>{title}</Dialog.Title>
             {/* <Dialog.Description>Descripcion</Dialog.Description> */}
             <Dialog.Close asChild>
-              <button className="absolute top-2 right-2">
+              <button className="absolute right-2 top-2">
                 <IoMdClose size={24} />
               </button>
             </Dialog.Close>
-            <div className="bg-white p-4 rounded-lg shadow-lg w-full relative">
-              <Image
-                src={imgUrl || "/assets/education/google-cyber.png"}
-                alt={title}
-                width={750}
-                height={500}
-              />
+            <div className="relative w-full rounded-lg bg-white p-4 shadow-lg">
+              <Image src={imgUrl || "/assets/education/google-cyber.png"} alt={title} width={750} height={500} />
             </div>
             {link && (
-              <a
-                href={link}
-                target="_blank"
-                rel="noreferrer"
-                className="text-accent text-lg mt-4 block text-center"
-              >
+              <a href={link} target="_blank" rel="noreferrer" className="mt-4 block text-center text-lg text-accent">
                 See Certificate
               </a>
             )}
 
             {credlyLink && (
-              <a
-                href={credlyLink}
-                target="_blank"
-                rel="noreferrer"
-                className="text-accent/50 underline mt-4 block text-center"
-              >
+              <a href={credlyLink} target="_blank" rel="noreferrer" className="mt-4 block text-center text-accent/50 underline">
                 See Credly Badge
               </a>
             )}

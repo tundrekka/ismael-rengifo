@@ -1,9 +1,8 @@
 "use client";
-
 import { motion } from "framer-motion";
 import { FaArrowDown } from "react-icons/fa";
-import Image from "next/image";
 import { useLayoutEffect } from "react";
+import Image from "next/image";
 
 const Photo = () => {
   // function to scroll to the end of the page with smooth behavior
@@ -26,7 +25,7 @@ const Photo = () => {
   }, []);
 
   return (
-    <div className="w-full h-full relative">
+    <div className="relative h-full w-full">
       <motion.div
         initial={{ opacity: 0 }}
         animate={{
@@ -42,7 +41,7 @@ const Photo = () => {
             transition: { delay: 0.6, duration: 0.4, ease: "easeInOut" },
           }}
           // className="w-[298px] h-[298px] xl:w-[450px] xl:h-[450px] mix-blend-lighten absolute"
-          className="w-[298px] h-[298px] xl:w-[424px] xl:h-[424px] mix-blend-lighten absolute"
+          className="absolute h-[298px] w-[298px] mix-blend-lighten xl:h-[424px] xl:w-[424px]"
         >
           <Image
             src="/assets/ismel-removebg-500x500.png"
@@ -50,20 +49,17 @@ const Photo = () => {
             quality={100}
             fill
             alt="Face photo of ismael rengifo"
-            className="object-contain rounded-full brightness-75 hover:brightness-90 drop-shadow-[0px_4px_6px_#00FF9950]"
+            className="rounded-full object-contain brightness-75 drop-shadow-[0px_4px_6px_#00FF9950] hover:brightness-90"
             // style={{filter: "drop-shadow(2px 4px 6px #00FF9950)"}}
           />
-          <div
-            id="arrow-down"
-            className="hidden xl:flex text-white/20 animate-pulse absolute bottom-0 right-0"
-          >
+          <div id="arrow-down" className="absolute bottom-0 right-0 hidden animate-pulse text-white/20 xl:flex">
             <FaArrowDown className="cursor-pointer" onClick={scrollTo} />
           </div>
         </motion.div>
 
         {/* circle */}
         <motion.svg
-          className="w-[300px] h-[300px] xl:w-[428px] xl:h-[428px]"
+          className="h-[300px] w-[300px] xl:h-[428px] xl:w-[428px]"
           fill="transparent"
           viewBox="0 0 506 506"
           xmlns="http://www.w3.org/2000/svg"

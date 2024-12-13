@@ -1,5 +1,3 @@
-import * as React from "react";
-
 import { cn } from "@/lib/utils";
 
 const Input = React.forwardRef(({ className, type, ...props }, ref) => {
@@ -7,8 +5,8 @@ const Input = React.forwardRef(({ className, type, ...props }, ref) => {
     <input
       type={type}
       className={cn(
-        "flex h-[48px] rounded-md border border-white/10 focus:border-accent font-light bg-primary px-4 py-5 text-base placeholder:text-white/50 placeholder:text-sm outline-none",
-        className
+        "flex h-[48px] rounded-md border border-white/10 bg-primary px-4 py-5 text-base font-light outline-none placeholder:text-sm placeholder:text-white/50 focus:border-accent",
+        className,
       )}
       ref={ref}
       {...props}

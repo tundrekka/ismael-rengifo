@@ -1,15 +1,9 @@
 "use client";
-
 import { useSwiper } from "swiper/react";
 import { PiCaretLeftBold, PiCaretRightBold } from "react-icons/pi";
 import { cn } from "@/lib/utils";
 
-const WorkSliderBtns = ({
-  containerStyles,
-  btnStyles,
-  iconsStyles,
-  length,
-}) => {
+const WorkSliderBtns = ({ containerStyles, btnStyles, iconsStyles, length }) => {
   const swiper = useSwiper();
   const currentIndex = swiper.activeIndex;
   if (!swiper || swiper.destroyed) return <div></div>;
@@ -17,7 +11,7 @@ const WorkSliderBtns = ({
   return (
     <div className={containerStyles}>
       {length && (
-        <p className="basis-full xl:basis-auto text-sm text-white/60 flex items-end xl:mr-3">
+        <p className="flex basis-full items-end text-sm text-white/60 xl:mr-3 xl:basis-auto">
           {currentIndex + 1} / {length}
         </p>
       )}

@@ -1,9 +1,9 @@
+import { FiEye } from "react-icons/fi";
+import { PERSONAL_INFO } from "@/app/constants";
 import Social from "@/components/Social";
 import ContactForm from "./components/ContactForm";
 import List from "./components/List";
 import DownloadCV from "@/components/DownloadCV";
-import { FiDownload, FiEye } from "react-icons/fi";
-import { PERSONAL_INFO } from "@/app/constants";
 
 export const metadata = {
   title: "Ismael Rengifo | Contact",
@@ -12,23 +12,16 @@ export const metadata = {
 
 const Contact = () => {
   return (
-    // <motion.section
-    //   initial={{ opacity: 0 }}
-    //   animate={{
-    //     opacity: 1,
-    //     transition: { delay: 0, duration: 0.4, ease: "easeIn" },
-    //   }}
-    //   className="py-6"
-    // >
-    <div className="py-6 container mx-auto px-0">
-      <div className="flex flex-col xl:flex-row gap-[30px] xl:items-start">
+    <div className="container mx-auto px-0 py-6">
+      <div className="flex flex-col gap-[30px] xl:flex-row xl:items-start">
         {/* form */}
-        <div className="xl:w-[54%] order-2 xl:order-none">
+        <section className="order-2 xl:order-none xl:w-[54%]">
           <ContactForm />
-        </div>
+        </section>
+
         {/* info */}
-        <div className="flex-1 flex items-center xl:justify-end order-1 xl:order-none mb-8 xl:mb-0">
-          <ul className="flex flex-col items-center gap-10 relative w-full">
+        <section className="order-1 mb-8 flex flex-1 items-center xl:order-none xl:mb-0 xl:justify-end">
+          <ul className="relative flex w-full flex-col items-center gap-10">
             <List />
             <Social
               containerStyles="flex gap-6"
@@ -41,14 +34,14 @@ const Contact = () => {
               <a
                 href={PERSONAL_INFO.curriculumsLinks.spanish}
                 aria-label="See Spanish Curriculum Vitae"
-                className="flex text-white/70 hover:text-white text-xs items-center gap-2 cursor-pointer"
+                className="flex cursor-pointer items-center gap-2 text-xs text-white/70 hover:text-white"
               >
                 Spanish CV
                 <FiEye />
               </a>
             </li>
           </ul>
-        </div>
+        </section>
       </div>
     </div>
   );

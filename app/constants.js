@@ -26,7 +26,11 @@ export const PERSONAL_INFO = {
   lastName: "Rengifo",
   profession: "Frontend Developer",
   email: "ismaelrengifo.web@outlook.com",
-  phone: "(+58) 4248103737"
+  phone: "(+58) 4248103737",
+  curriculumsLinks: {
+    english: "/files/Ismael-Rengifo-CV-english.pdf",
+    spanish: "/files/Ismael-Rengifo-CV-espaniol.pdf",
+  }
 }
 
 const imagesUrls = {

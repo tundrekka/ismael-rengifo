@@ -41,7 +41,7 @@ const List = () => {
     <>
       {info.map((item, index) => {
         return (
-          <li key={index} className="flex items-center gap-4 md:gap-6">
+          <li key={index} style={{alignSelf: "start"}} className="flex items-center gap-4 md:gap-6">
             <div className="w-[42px] h-[42px] xl:w-[60px] xl:h-[60px] bg-[#27272c] text-accent rounded-md flex items-center justify-center">
               <div className="text-[22px] flex md:text-[28px]">
                 <button

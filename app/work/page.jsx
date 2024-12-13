@@ -1,6 +1,6 @@
 
 import Head from "next/head";
-import ContentClient from "./components/WorksWrapper";
+import WorksWrapper from "./components/WorksWrapper";
 
 
 // posible search params
@@ -27,7 +27,7 @@ const Work = () => {
         <title>Ismael Rengifo | Work</title>
       </Head>
         <div className="flex flex-col xl:flex-row xl:gap-[30px]">
-          <ContentClient />
+          <WorksWrapper />
         </div>
     </div>
   );

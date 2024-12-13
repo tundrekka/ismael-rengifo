@@ -28,7 +28,7 @@ const Contact = () => {
         </div>
         {/* info */}
         <div className="flex-1 flex items-center xl:justify-end order-1 xl:order-none mb-8 xl:mb-0">
-          <ul className="flex flex-col items-center gap-10 relative">
+          <ul className="flex flex-col items-center gap-10 relative w-full">
             <List />
             <Social
               containerStyles="flex gap-6"

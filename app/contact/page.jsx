@@ -1,9 +1,9 @@
 import { FiEye } from "react-icons/fi";
 import { PERSONAL_INFO } from "@/app/constants";
 import Social from "@/components/Social";
+import DownloadCV from "@/components/DownloadCV";
 import ContactForm from "./components/ContactForm";
 import List from "./components/List";
-import DownloadCV from "@/components/DownloadCV";
 
 export const metadata = {
   title: "Ismael Rengifo | Contact",

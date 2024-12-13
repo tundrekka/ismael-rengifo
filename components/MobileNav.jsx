@@ -4,7 +4,7 @@ import { usePathname } from "next/navigation";
 import { CiMenuFries } from "react-icons/ci";
 import { navLinks } from "@/app/constants";
 import Link from "next/link";
-import DownloadCV from "./DownloadCV";
+import DownloadCV from "@/components/DownloadCV";
 
 const MobileNav = () => {
   const pathname = usePathname();

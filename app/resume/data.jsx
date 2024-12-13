@@ -1,6 +1,6 @@
 import { FaHtml5, FaCss3, FaJs, FaReact, FaNodeJs } from "react-icons/fa";
 import { SiTailwindcss, SiNextdotjs, SiBurpsuite, SiFacebook, SiTypescript } from "react-icons/si";
-import { PERSONAL_INFO } from "../constants";
+import { PERSONAL_INFO } from "@/app/constants";
 import GoogleLetters from "@/components/GoogleLetters";
 
 const GOOGLE_COLORED_WORD = (

@@ -7,11 +7,11 @@ import GoogleLetters from "@/components/GoogleLetters";
 
 const Home = () => {
   return (
-    <section className="h-full">
+    <div className="h-full">
       <div className="h-full">
         <div className="flex flex-col items-center justify-between xl:flex-row xl:items-start xl:pb-20 xl:pt-8">
           {/* text */}
-          <div className="order-2 text-center xl:order-none xl:text-left">
+          <section className="order-2 text-center xl:order-none xl:text-left">
             <span className="text-lg text-white/90">Top Freelancer in Upwork</span>
             <h1 className="h1 mb-6 xl:text-[70px]">
               <span className="inline-block text-accent xl:ml-[-4px]">Software Dev</span>
@@ -34,15 +34,15 @@ const Home = () => {
                 />
               </div>
             </div>
-          </div>
+          </section>
           {/* photo */}
-          <div className="order-1 mb-8 xl:order-none xl:mb-0">
+          <section className="order-1 mb-8 xl:order-none xl:mb-0">
             <Photo />
-          </div>
+          </section>
         </div>
       </div>
       <Stats />
-    </section>
+    </div>
   );
 };
 

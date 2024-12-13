@@ -2,8 +2,8 @@
 import * as SheetPrimitive from "@radix-ui/react-dialog";
 import { cva } from "class-variance-authority";
 import { cn } from "@/lib/utils";
-
 import { IoMdClose } from "react-icons/io";
+import { forwardRef } from "react";
 
 const Sheet = SheetPrimitive.Root;
 
@@ -13,7 +13,7 @@ const SheetClose = SheetPrimitive.Close;
 
 const SheetPortal = SheetPrimitive.Portal;
 
-const SheetOverlay = React.forwardRef(({ className, ...props }, ref) => (
+const SheetOverlay = forwardRef(({ className, ...props }, ref) => (
   <SheetPrimitive.Overlay
     className={cn(
       "fixed inset-0 z-50 bg-black/80 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
@@ -42,7 +42,7 @@ const sheetVariants = cva(
   },
 );
 
-const SheetContent = React.forwardRef(({ side = "right", className, children, ...props }, ref) => (
+const SheetContent = forwardRef(({ side = "right", className, children, ...props }, ref) => (
   <SheetPortal>
     <SheetOverlay />
     <SheetPrimitive.Content ref={ref} className={cn(sheetVariants({ side }), className)} {...props}>
@@ -66,12 +66,12 @@ const SheetFooter = ({ className, ...props }) => (
 );
 SheetFooter.displayName = "SheetFooter";
 
-const SheetTitle = React.forwardRef(({ className, ...props }, ref) => (
+const SheetTitle = forwardRef(({ className, ...props }, ref) => (
   <SheetPrimitive.Title ref={ref} className={cn("text-lg font-semibold text-slate-950 dark:text-slate-50", className)} {...props} />
 ));
 SheetTitle.displayName = SheetPrimitive.Title.displayName;
 
-const SheetDescription = React.forwardRef(({ className, ...props }, ref) => (
+const SheetDescription = forwardRef(({ className, ...props }, ref) => (
   <SheetPrimitive.Description ref={ref} className={cn("text-sm text-slate-500 dark:text-slate-400", className)} {...props} />
 ));
 SheetDescription.displayName = SheetPrimitive.Description.displayName;

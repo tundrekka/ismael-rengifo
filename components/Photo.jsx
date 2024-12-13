@@ -40,7 +40,6 @@ const Photo = () => {
             opacity: 1,
             transition: { delay: 0.6, duration: 0.4, ease: "easeInOut" },
           }}
-          // className="w-[298px] h-[298px] xl:w-[450px] xl:h-[450px] mix-blend-lighten absolute"
           className="absolute h-[298px] w-[298px] mix-blend-lighten xl:h-[424px] xl:w-[424px]"
         >
           <Image
@@ -50,9 +49,8 @@ const Photo = () => {
             fill
             alt="Face photo of ismael rengifo"
             className="rounded-full object-contain brightness-75 drop-shadow-[0px_4px_6px_#00FF9950] hover:brightness-90"
-            // style={{filter: "drop-shadow(2px 4px 6px #00FF9950)"}}
           />
-          <div id="arrow-down" className="absolute bottom-0 right-0 hidden animate-pulse text-white/20 xl:flex">
+          <div id="arrow-down" className="absolute bottom-0 right-0 hidden animate-pulse text-white/30 xl:flex">
             <FaArrowDown className="cursor-pointer" onClick={scrollTo} />
           </div>
         </motion.div>

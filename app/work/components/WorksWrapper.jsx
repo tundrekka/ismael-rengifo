@@ -5,29 +5,24 @@ import { IoMdOpen } from "react-icons/io";
 import { allWorkItems } from "./data";
 import SwipperClient from "./SwipperClient";
 import ButtonsClient from "./ButtonsClient";
+import { PortfolioSkeleton } from "@/components/SkeletonLoader";
 
 const ContentClient = () => {
   const params = useSearchParams();
   const projectSlug = params.get("project_name");
 
-  const calculateSelectedProject = () => {
-    if (!projectSlug) return allWorkItems[0];
-    const project = allWorkItems.find((item) => item.slug === projectSlug);
-    return project ? project : allWorkItems[0];
-  };
-
-  const [selectedProject, setProject] = useState(calculateSelectedProject());
+  const [selectedProject, setProject] = useState(null);
   const [projectsState, setProjects] = useState(allWorkItems);
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
+    const project = allWorkItems.find((item) => {
+      return item.slug === projectSlug;
+    });
+    const finalProject = project ? project : allWorkItems[0];
+    setProject(finalProject);
     if (projectSlug) {
-      // ! improve O complexity
       // look for the slug and place it first
-      const project = allWorkItems.find((item) => {
-        return item.slug === projectSlug;
-      });
-      const finalProject = project ? project : allWorkItems[0];
       setProjects([finalProject, ...allWorkItems.filter((item, index) => item.slug !== projectSlug)]);
     } else {
       // setProjects(externalProjects);
@@ -35,6 +30,8 @@ const ContentClient = () => {
     setIsLoaded(true);
     return () => {};
   }, []);
+
+  if (!selectedProject) return <PortfolioSkeleton />;
   return (
     <>
       <section className="order-2 flex w-full flex-col xl:order-none xl:h-[460px] xl:w-[47%] xl:justify-between">
@@ -44,7 +41,7 @@ const ContentClient = () => {
             aria-label="Work Project Name"
             className="text-[42px] font-bold capitalize leading-none text-white transition-all duration-500 group-hover:text-accent"
           >
-            {selectedProject.title}
+            {isLoaded && selectedProject.title}
           </h1>
 
           {/* project description */}

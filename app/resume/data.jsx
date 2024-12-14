@@ -50,7 +50,7 @@ const about = {
 const experience = {
   icon: "/assets/resume/badge.svg",
   title: "My experience",
-  description: `With ${PERSONAL_INFO.experienceYearsNumber} years of experience, I've honed my frontend skills working on a wide range of complex projects. I thrive on challenges and am always eager to learn new technologies.`,
+  description: `With ${PERSONAL_INFO.experienceYearsNumber} years of experience, I've honed my frontend skills working on a wide range of complex projects. I thrive on challenges and I am always eager to learn new technologies.`,
   items: [
     {
       company: "Wobjay CMS",
@@ -148,7 +148,7 @@ const education = {
     {
       institutionJsx: (
         <>
-          edX <span class="text-lg text-accent">Hardvard</span>
+          edX <span className="text-lg text-accent">Hardvard</span>
         </>
       ),
       degreeJsx: <>Introduction to Computer Science</>,

@@ -45,7 +45,9 @@ const ContentClient = () => {
           </h1>
 
           {/* project description */}
-          <p className="leading-[1.9] text-white/60">{selectedProject.description}</p>
+          <p style={{ whiteSpace: "pre-line" }} className="leading-[1.9] text-white/60">
+            {selectedProject.description}
+          </p>
 
           {/* stack */}
           <ul className="flex flex-wrap gap-4">

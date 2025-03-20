@@ -162,12 +162,25 @@ const education = {
       institutionJsx: <>Coursera - IBM Skills Network</>,
       degreeJsx: (
         <>
+          Certificate <span className="text-xl text-accent">IBM</span> Gen AI for Software Devs
+        </>
+      ),
+      duration: "2025",
+      verificationLink: "https://coursera.org/share/a74931b8fcbe5f2af1366512895a4043",
+      credlyLink: "https://www.credly.com/badges/1c2fd17a-30c2-4b88-bd46-360b89e7c798/public_url",
+      title: "IBM Certification, gen AI",
+      imgUrl: "/assets/education/generative-ai-software-dev-ibm.png",
+    },
+    {
+      institutionJsx: <>Coursera - IBM Skills Network</>,
+      degreeJsx: (
+        <>
           Course <span className="text-xl text-accent">IBM</span> Penetration Testing
         </>
       ),
       duration: "2024",
       verificationLink: "https://coursera.org/verify/LL7RQMTF9PL6",
-      title: "IBM Certification",
+      title: "IBM Certification, pen test",
       imgUrl: "/assets/education/ibm-pentest-course.png",
     },
   ],

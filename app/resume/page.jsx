@@ -13,7 +13,7 @@ export const metadata = {
 
 const Resume = () => {
   return (
-    <div className="flex min-h-[80vh] items-start justify-center py-12 xl:py-0">
+    <div className="flex min-h-[80vh] items-start justify-center py-12 xl:py-0 xl:pb-2">
       <div className="container mx-auto">
         <Tabs defaultValue="education" className="flex flex-col gap-[60px] xl:flex-row">
           <TabsList className="mx-auto flex w-full max-w-[380px] flex-col gap-6 xl:mx-0">

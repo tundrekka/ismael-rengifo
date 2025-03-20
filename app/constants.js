@@ -34,11 +34,11 @@ export const PERSONAL_INFO = {
   experienceYearsNumber: new Date().getFullYear() - 2021,
   stats: {
     projects: 5,
-    technologies: 7,
-    workHours: 5440,
+    technologies: 8,
+    workHours: 5740,
   },
   curriculumsLinks: {
-    english: "/files/Ismael-Rengifo-CV-english.pdf",
-    spanish: "/files/Ismael-Rengifo-CV-espaniol.pdf",
+    english: "/files/Ismael-Rengifo-CV-english-new.pdf",
+    spanish: "/files/Ismael-Rengifo-CV-spanish-new.pdf",
   },
 };

@@ -1,11 +1,23 @@
+const SoftHiglight = ({ children }) => {
+  return <strong className="text-white/80">{children}</strong>;
+};
+
 const allWorkItems = [
   {
     num: "01",
     category: "frontend",
     title: "WobJay",
     slug: "wobjay",
-    description:
-      "In this modern website builder, as the frontend team lead, I have driven the evolution of the product from its inception to its current state. During this time, I have fostered the professional growth of other developers. The main purpose of this project is for the creator of the page to not have to write any code. For privacy reasons, I can't share the admin site, the photo and link are from the public site (still in dev).",
+    description: (
+      <>
+        In this modern website builder, as the frontend team lead, I have driven the evolution of the product from its inception to its
+        current state. During this time, I have done things like:{"\n"} - <SoftHiglight>Designed</SoftHiglight> and implemented a scalable
+        and maintainable translation managament system, benefiting both the {"project's"} React app and the translation team.{" "}
+        <SoftHiglight>70%</SoftHiglight> reduction in new translation integration time by automating the detection of missing keys and
+        generating spreadsheets for translators. {"\n"}- Docker implementation to reduce backend rebuild and update time by{" "}
+        <SoftHiglight>65%</SoftHiglight>, streamlining the onboarding of new developers to the team
+      </>
+    ),
     stack: [
       { name: "React" },
       { name: "Typescript" },
@@ -23,6 +35,29 @@ const allWorkItems = [
   {
     num: "02",
     category: "frontend",
+    title: "Heroes Fest",
+    slug: "heroes-fest",
+    description: (
+      <>
+        I was one of the developers responsible for creating this landing page using React. {"It's"} an event held in Colombia for
+        entrepreneurs. They provided me the design and General Info. The events calendar (grid) was really fun and challenging to make it
+        responsive. They update the website every year so the website must have changed since I worked on it. I did things like:
+        {"\n"}- <SoftHiglight>Led</SoftHiglight> the development and refactoring of the {"event's"} landing page, utilizing React and SCSS,
+        ensuring a fully responsive experience for over 10,000 participants. {"\n"}- <SoftHiglight>Introduced</SoftHiglight> a centralized
+        data management system based on JSON, achieving a <strong className="text-white/70">60%</strong> reduction in content update time
+        for mobile and desktop versions, all during the production phase
+      </>
+    ),
+    stack: [{ name: "React" }, { name: "SCCS" }, { name: "Responsive Design" }],
+    image: "/assets/work/heroes-fest-view-pc-thumb.png",
+    live: "https://www.innpulsacolombia.com/heroes-fest/",
+    github: "",
+    projectTime: "year 2021",
+    moreImages: [{ url: "/assets/work/heroes-fest-2021.png", label: "Landing Page" }],
+  },
+  {
+    num: "03",
+    category: "frontend",
     title: "StyleGuide Builder",
     slug: "styleguide-builder",
     description:
@@ -36,20 +71,6 @@ const allWorkItems = [
       { url: "/assets/work/styleguide-figma-frame.jpg", label: "Figma frame" },
       { url: "/assets/work/styleguide-result-vid.mp4", label: "Web Result" },
     ],
-  },
-  {
-    num: "03",
-    category: "frontend",
-    title: "Heroes Fest",
-    slug: "heroes-fest",
-    description:
-      "I was one of the developers responsible for creating this landing page using React. It's an event held in Colombia for entrepreneurs. They provided me the design and General Info. The events calendar (grid) was really fun and challenging to make it responsive. They update the website every year so the website must have changed since I worked on it.",
-    stack: [{ name: "React" }, { name: "SCCS" }, { name: "Responsive Design" }],
-    image: "/assets/work/heroes-fest-view-pc-thumb.png",
-    live: "https://www.innpulsacolombia.com/heroes-fest/",
-    github: "",
-    projectTime: "year 2021",
-    moreImages: [{ url: "/assets/work/heroes-fest-2021.png", label: "Landing Page" }],
   },
   {
     num: "04",

@@ -13,29 +13,49 @@ export const metadata = {
 
 const Resume = () => {
   return (
-    <div className="flex min-h-[80vh] items-start justify-center py-12 xl:py-0 xl:pb-2">
+    <div className="flex min-h-[80vh] items-start justify-center py-10 xl:py-12">
       <div className="container mx-auto">
-        <Tabs defaultValue="education" className="flex flex-col gap-[60px] xl:flex-row">
-          <TabsList className="mx-auto flex w-full max-w-[380px] flex-col gap-6 xl:mx-0">
-            <TabsTrigger value="education">Education</TabsTrigger>
-            <TabsTrigger value="experience">Experience</TabsTrigger>
-            <TabsTrigger value="skills">Skills</TabsTrigger>
-            <TabsTrigger value="about">About me</TabsTrigger>
+        {/* page header */}
+        <div className="mb-12">
+          <div className="section-eyebrow">/ Resume</div>
+          <h1 className="font-display text-5xl italic tracking-tight text-ink xl:text-7xl">
+            The credentials.
+          </h1>
+        </div>
+
+        <Tabs defaultValue="education" className="flex flex-col gap-12 xl:flex-row xl:gap-16">
+          <TabsList className="flex w-full flex-col gap-2 xl:w-[320px]">
+            <TabsTrigger value="education">
+              <span className="text-ink-faint">01</span>
+              <span>Education</span>
+            </TabsTrigger>
+            <TabsTrigger value="experience">
+              <span className="text-ink-faint">02</span>
+              <span>Experience</span>
+            </TabsTrigger>
+            <TabsTrigger value="skills">
+              <span className="text-ink-faint">03</span>
+              <span>Skills</span>
+            </TabsTrigger>
+            <TabsTrigger value="about">
+              <span className="text-ink-faint">04</span>
+              <span>About me</span>
+            </TabsTrigger>
           </TabsList>
 
           {/* content */}
           <div className="min-h-[70vh] w-full">
             {/* experience */}
             <TabsContent value="experience" className="w-full">
-              <section className="flex flex-col gap-[30px] text-center xl:text-left">
-                <h1 className="text-4xl font-bold">{experience.title}</h1>
-                <p className="mx-auto max-w-[600px] text-white/60 xl:mx-0">
+              <section className="flex flex-col gap-6 text-center xl:text-left">
+                <h2 className="font-display text-4xl italic text-ink xl:text-5xl">{experience.title}</h2>
+                <p className="mx-auto max-w-[600px] text-[15px] text-ink-muted xl:mx-0">
                   {experience.description}
                   <span>
                     {" "}
                     Check my{" "}
                     <a
-                      className="text-accent/50 underline"
+                      className="text-accent underline underline-offset-4 hover:text-accent-hover"
                       rel="noopener noreferer"
                       target="_blank"
                       href="https://www.upwork.com/freelancers/~012e8787e1e4b6df2e"
@@ -44,36 +64,36 @@ const Resume = () => {
                     </a>
                   </span>
                 </p>
-                <ScrollArea className="h-[400px] shadow-md">
-                  <ul className="grid grid-cols-1 gap-[30px] lg:grid-cols-2">
-                    {experience.items.map((item, index) => {
-                      return (
-                        <Link href={item.fullViewLink} key={index}>
-                          <li className="relative flex h-[200px] flex-col items-center justify-center gap-1 rounded-xl bg-[#232329] px-10 py-6 lg:items-start lg:hover:bg-gray-800">
-                            <span className="absolute right-[16px] top-[6px]">
-                              <IoMdOpen className="inline-block" />
-                            </span>
-                            <span className="text-accent">{item.duration}</span>
-                            <h2 className="min-h-[60px] max-w-[260px] text-center text-xl lg:text-left">{item.position}</h2>
-                            <div className="flex items-center gap-3">
-                              {/* dot */}
-                              <span className="h-[6px] w-[6px] rounded-full bg-accent"></span>
-                              <p className="text-white/60">{item.company}</p>
-                            </div>
-                            {/* techs */}
-                            {item.techs && (
-                              <div>
-                                <ul className="flex gap-2 text-xs text-white/40">
-                                  {item.techs.map((tech, index) => {
-                                    return <li key={index}>{tech}</li>;
-                                  })}
-                                </ul>
-                              </div>
-                            )}
-                          </li>
-                        </Link>
-                      );
-                    })}
+                <ScrollArea className="h-[420px]">
+                  <ul className="grid grid-cols-1 gap-3 pr-3 lg:grid-cols-2 lg:gap-4">
+                    {experience.items.map((item, index) => (
+                      <Link href={item.fullViewLink} key={index}>
+                        <li className="card-surface group relative flex h-[200px] flex-col items-center justify-center gap-2 px-7 py-6 lg:items-start">
+                          <span className="absolute right-5 top-5 text-ink-dim transition-colors group-hover:text-accent">
+                            <IoMdOpen className="inline-block" />
+                          </span>
+                          <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-ink-dim">
+                            {item.duration}
+                          </span>
+                          <h3 className="min-h-[56px] max-w-[260px] text-center font-display text-2xl italic text-ink lg:text-left">
+                            {item.position}
+                          </h3>
+                          <div className="flex items-center gap-2.5">
+                            <span className="h-1 w-1 rounded-full bg-ink-faint"></span>
+                            <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-ink-muted">
+                              {item.company}
+                            </p>
+                          </div>
+                          {item.techs && (
+                            <ul className="flex flex-wrap gap-2 text-[10px] text-ink-dim">
+                              {item.techs.map((tech, i) => (
+                                <li key={i}>{tech}</li>
+                              ))}
+                            </ul>
+                          )}
+                        </li>
+                      </Link>
+                    ))}
                   </ul>
                 </ScrollArea>
               </section>
@@ -81,35 +101,36 @@ const Resume = () => {
 
             {/* education */}
             <TabsContent value="education" className="w-full">
-              <section className="flex flex-col gap-[30px] text-center xl:text-left">
-                <h1 className="text-4xl font-bold">{education.title}</h1>
-                <p className="mx-auto max-w-[600px] text-white/60 xl:mx-0">{education.description}</p>
-                <ScrollArea className="h-[400px] shadow-md">
-                  <ul className="grid grid-cols-1 gap-[30px] lg:grid-cols-2">
-                    {education.items.map((item, index) => {
-                      return (
-                        <CertificateModal
-                          title={item.title}
-                          link={item.verificationLink}
-                          credlyLink={item.credlyLink}
-                          imgUrl={item.imgUrl || ""}
-                          key={index}
-                        >
-                          <li className="relative flex h-[184px] flex-col items-center justify-center gap-1 rounded-xl bg-[#232329] px-10 py-6 lg:items-start lg:hover:bg-gray-800">
-                            <span className="absolute right-[16px] top-[6px]">
-                              <IoMdOpen className="inline-block" />
-                            </span>
-                            <p className="mr-2 text-white/60">{item.duration}</p>
-                            <h2 className="min-h-[60px] max-w-[260px] text-center text-xl lg:text-left">{item.degreeJsx}</h2>
-                            <div className="flex items-center gap-3">
-                              {/* dot */}
-                              <span className="h-[5px] w-[5px] rounded-full bg-accent/60"></span>
-                              <p className="text-left text-white/60">{item.institutionJsx}</p>
-                            </div>
-                          </li>
-                        </CertificateModal>
-                      );
-                    })}
+              <section className="flex flex-col gap-6 text-center xl:text-left">
+                <h2 className="font-display text-4xl italic text-ink xl:text-5xl">{education.title}</h2>
+                <p className="mx-auto max-w-[600px] text-[15px] text-ink-muted xl:mx-0">{education.description}</p>
+                <ScrollArea className="h-[420px]">
+                  <ul className="grid grid-cols-1 gap-3 pr-3 lg:grid-cols-2 lg:gap-4">
+                    {education.items.map((item, index) => (
+                      <CertificateModal
+                        title={item.title}
+                        link={item.verificationLink}
+                        credlyLink={item.credlyLink}
+                        imgUrl={item.imgUrl || ""}
+                        key={index}
+                      >
+                        <li className="card-surface group relative flex h-[190px] flex-col items-center justify-center gap-2 px-7 py-6 lg:items-start">
+                          <span className="absolute right-5 top-5 text-ink-dim transition-colors group-hover:text-accent">
+                            <IoMdOpen className="inline-block" />
+                          </span>
+                          <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-ink-dim">{item.duration}</p>
+                          <h3 className="min-h-[56px] max-w-[260px] text-center text-lg text-ink lg:text-left">
+                            {item.degreeJsx}
+                          </h3>
+                          <div className="flex items-center gap-2.5">
+                            <span className="h-1 w-1 rounded-full bg-ink-faint"></span>
+                            <p className="text-left font-mono text-[11px] uppercase tracking-[0.18em] text-ink-muted">
+                              {item.institutionJsx}
+                            </p>
+                          </div>
+                        </li>
+                      </CertificateModal>
+                    ))}
                   </ul>
                 </ScrollArea>
               </section>
@@ -117,46 +138,49 @@ const Resume = () => {
 
             {/* skills */}
             <TabsContent value="skills" className="h-full w-full">
-              <section className="flex flex-col gap-[30px]">
-                <div className="flex flex-col gap-[30px] text-center xl:text-left">
-                  <h2 className="text-4xl font-bold">{skills.title}</h2>
-                  <p className="mx-auto max-w-[600px] text-white/60 xl:mx-0">{skills.description}</p>
+              <section className="flex flex-col gap-8">
+                <div className="flex flex-col gap-4 text-center xl:text-left">
+                  <h2 className="font-display text-4xl italic text-ink xl:text-5xl">{skills.title}</h2>
+                  <p className="mx-auto max-w-[600px] text-[15px] text-ink-muted xl:mx-0">{skills.description}</p>
                 </div>
-                <ul className="grid grid-cols-2 gap-4 sm:grid-cols-3 xl:gap-[30px]">
-                  {skills.skillList.map((skill, index) => {
-                    return (
-                      <li key={index}>
-                        <TooltipProvider delayDuration={100}>
-                          <Tooltip>
-                            <TooltipTrigger className="group flex h-[150px] w-full items-center justify-center rounded-xl bg-[#232329]">
-                              <div className="text-6xl transition-all duration-300 group-hover:text-accent">{skill.icon}</div>
-                            </TooltipTrigger>
-                            <TooltipContent>
-                              <p className="capitalize">{skill.name}</p>
-                            </TooltipContent>
-                          </Tooltip>
-                        </TooltipProvider>
-                      </li>
-                    );
-                  })}
+                <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:gap-4">
+                  {skills.skillList.map((skill, index) => (
+                    <li key={index}>
+                      <TooltipProvider delayDuration={100}>
+                        <Tooltip>
+                          <TooltipTrigger className="card-surface group flex h-[140px] w-full items-center justify-center">
+                            <div className="text-5xl text-ink-muted transition-all duration-500 group-hover:scale-110 group-hover:text-accent">
+                              {skill.icon}
+                            </div>
+                          </TooltipTrigger>
+                          <TooltipContent>
+                            <p className="font-mono text-[11px] uppercase tracking-[0.18em] capitalize">{skill.name}</p>
+                          </TooltipContent>
+                        </Tooltip>
+                      </TooltipProvider>
+                    </li>
+                  ))}
                 </ul>
               </section>
             </TabsContent>
 
             {/* about */}
             <TabsContent value="about" className="w-full text-center xl:text-left">
-              <section className="flex flex-col gap-[30px]">
-                <h2 className="text-4xl font-bold">{about.title}</h2>
-                <p className="mx-auto max-w-[600px] text-white/60 xl:mx-0">{about.description}</p>
-                <ul className="mx-auto grid max-w-[620px] grid-cols-1 gap-y-6 xl:mx-0 xl:grid-cols-2">
-                  {about.info.map((item, index) => {
-                    return (
-                      <li key={index} className="flex flex-wrap items-center justify-center gap-4 xl:justify-start">
-                        <span className="text-white/60">{item.fieldName}</span>
-                        <span className="text-xl">{item.fieldValue}</span>
-                      </li>
-                    );
-                  })}
+              <section className="flex flex-col gap-6">
+                <h2 className="font-display text-4xl italic text-ink xl:text-5xl">{about.title}</h2>
+                <p className="mx-auto max-w-[600px] text-[15px] text-ink-muted xl:mx-0">{about.description}</p>
+                <ul className="mx-auto mt-4 grid max-w-[640px] grid-cols-1 gap-y-5 xl:mx-0 xl:grid-cols-2 xl:gap-x-10">
+                  {about.info.map((item, index) => (
+                    <li
+                      key={index}
+                      className="flex flex-wrap items-center justify-center gap-3 border-b border-white/[0.06] pb-4 xl:justify-start"
+                    >
+                      <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-ink-dim">
+                        {item.fieldName}
+                      </span>
+                      <span className="text-base text-ink">{item.fieldValue}</span>
+                    </li>
+                  ))}
                 </ul>
               </section>
             </TabsContent>

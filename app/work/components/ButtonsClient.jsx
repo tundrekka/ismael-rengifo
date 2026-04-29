@@ -5,46 +5,25 @@ import Link from "next/link";
 
 const ButtonsClient = ({ project }) => {
   return (
-    <>
-      {/* buttons */}
-      <div className="flex items-center gap-4">
-        {/* live project button */}
-        {project.live && (
-          <Link target="_blank" aria-label="Live project" href={project.live}>
-            <TooltipProvider delayDuration={100}>
-              <Tooltip>
-                <TooltipTrigger
-                  aria-label="Live project"
-                  className="group flex h-[70px] w-[70px] items-center justify-center rounded-full bg-white/5"
-                >
-                  <BsArrowUpRight className="text-3xl text-white group-hover:text-accent" />
-                </TooltipTrigger>
-                <TooltipContent>
-                  <p id="live-project-text">Live project</p>
-                </TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
-          </Link>
-        )}
-        {/* github project button */}
-        {/*
-          project.github && (
-        <Link href={project.github}>
+    <div className="flex items-center gap-3">
+      {project.live && (
+        <Link target="_blank" aria-label="Live project" href={project.live}>
           <TooltipProvider delayDuration={100}>
             <Tooltip>
-              <TooltipTrigger className="w-[70px] h-[70px] rounded-full bg-white/5 flex justify-center items-center group">
-                <BsGithub className="text-white text-3xl group-hover:text-accent" />
+              <TooltipTrigger
+                aria-label="Live project"
+                className="group flex h-[60px] w-[60px] items-center justify-center rounded-full border border-white/10 bg-white/[0.03] transition-all duration-500 hover:-translate-y-0.5 hover:border-accent/40 hover:bg-accent/10"
+              >
+                <BsArrowUpRight className="text-2xl text-ink-muted transition-all group-hover:text-accent group-hover:rotate-45" />
               </TooltipTrigger>
               <TooltipContent>
-                <p>Github repository</p>
+                <p className="font-mono text-[11px] uppercase tracking-[0.18em]">Live project</p>
               </TooltipContent>
             </Tooltip>
           </TooltipProvider>
         </Link>
-          )
-        */}
-      </div>
-    </>
+      )}
+    </div>
   );
 };
 

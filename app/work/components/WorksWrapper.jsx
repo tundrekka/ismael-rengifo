@@ -34,52 +34,68 @@ const ContentClient = () => {
   if (!selectedProject) return <PortfolioSkeleton />;
   return (
     <>
-      <section className="order-2 flex w-full flex-col xl:order-none xl:h-[460px] xl:w-[47%] xl:justify-between">
-        <div className="flex h-[50%] flex-col gap-[30px]">
+      <section className="order-2 flex w-full flex-col xl:order-none xl:h-[480px] xl:w-[47%] xl:justify-between">
+        <div className="flex flex-col gap-6">
+          {/* eyebrow */}
+          <div className="flex items-center gap-3">
+            <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-ink-dim">
+              [ {selectedProject.num || "00"} ]
+            </span>
+            <span className="h-px w-10 bg-ink-faint" />
+            <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-ink-dim">
+              {selectedProject.category || "frontend"}
+            </span>
+          </div>
+
           {/* project title */}
           <h1
             aria-label="Work Project Name"
-            className="text-[42px] font-bold capitalize leading-none text-white transition-all duration-500 group-hover:text-accent"
+            className="font-display text-5xl italic capitalize leading-[0.95] tracking-tight text-ink transition-all duration-500 group-hover:text-accent xl:text-7xl"
           >
             {isLoaded && selectedProject.title}
           </h1>
 
           {/* project description */}
-          <p style={{ whiteSpace: "pre-line" }} className="leading-[1.9] text-white/60">
+          <p style={{ whiteSpace: "pre-line" }} className="text-[15px] leading-[1.85] text-ink-muted">
             {selectedProject.description}
           </p>
 
           {/* stack */}
-          <ul className="flex flex-wrap gap-4">
-            {selectedProject.stack.map((item, index) => {
-              return (
-                <li key={index} className="text-md text-accent">
-                  {item.name}
-                  {/* remove the last comma */}
-                  {index !== selectedProject.stack.length - 1 && ","}
-                </li>
-              );
-            })}
+          <ul className="flex flex-wrap gap-2">
+            {selectedProject.stack.map((item, index) => (
+              <li
+                key={index}
+                className="rounded-full border border-white/10 bg-white/[0.02] px-3 py-1 font-mono text-[10px] uppercase tracking-[0.18em] text-ink-muted"
+              >
+                {item.name}
+              </li>
+            ))}
           </ul>
-          <p className="text-sm text-white/70">Time: {selectedProject.projectTime}</p>
-          {/* border */}
-          <div className="border border-white/20"></div>
+
+          <div className="flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.18em] text-ink-dim">
+            <span className="h-1 w-1 rounded-full bg-ink-faint" />
+            {selectedProject.projectTime}
+          </div>
+
+          {/* divider */}
+          <div className="h-px w-full bg-white/[0.08]" />
+
           {/* buttons */}
           <ButtonsClient project={selectedProject} />
 
           {selectedProject.moreImages && (
-            <details className="z-20 rounded p-2 shadow-lg">
-              <summary className="text-md cursor-pointer text-white/50">More images</summary>
-              {selectedProject.moreImages.map((image, index) => {
-                return (
-                  <p className="mt-2" key={index + image.url}>
-                    <a target="_blank" className="text-sm underline" href={image.url}>
-                      {image.label}
-                      <IoMdOpen className="ml-2 inline-block text-white/80" />
-                    </a>
-                  </p>
-                );
-              })}
+            <details className="z-20 rounded-xl border border-white/[0.06] bg-white/[0.02] p-3">
+              <summary className="cursor-pointer font-mono text-[11px] uppercase tracking-[0.18em] text-ink-dim hover:text-ink">
+                More images
+              </summary>
+              {selectedProject.moreImages.map((image, index) => (
+                <p className="mt-2" key={index + image.url}>
+                  <a target="_blank" className="text-sm text-ink-muted underline underline-offset-4 hover:text-accent" href={image.url}>
+                    {image.label}
+                    <IoMdOpen className="ml-2 inline-block" />
+                  </a>
+                </p>
+              ))}
             </details>
           )}
         </div>

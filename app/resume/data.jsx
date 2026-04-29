@@ -1,5 +1,16 @@
 import { FaHtml5, FaCss3, FaJs, FaReact, FaNodeJs } from "react-icons/fa";
-import { SiTailwindcss, SiNextdotjs, SiBurpsuite, SiFacebook, SiTypescript } from "react-icons/si";
+import {
+  SiTailwindcss,
+  SiNextdotjs,
+  SiBurpsuite,
+  SiFacebook,
+  SiTypescript,
+  SiClaude,
+  SiLivekit,
+  SiSupabase,
+  SiIos,
+  SiExpo,
+} from "react-icons/si";
 import { PERSONAL_INFO } from "@/app/constants";
 import GoogleLetters from "@/components/GoogleLetters";
 
@@ -50,12 +61,19 @@ const about = {
 const experience = {
   icon: "/assets/resume/badge.svg",
   title: "My experience",
-  description: `With ${PERSONAL_INFO.experienceYearsNumber} years of experience, I've honed my frontend skills working on a wide range of complex projects. I thrive on challenges and I am always eager to learn new technologies.`,
+  description: `With ${PERSONAL_INFO.experienceYearsNumber} years of experience, I've shipped across web, mobile, and AI-powered products. I work with Claude and other AI tools as part of my day-to-day stack — and I thrive on challenges that span the whole product.`,
   items: [
+    {
+      company: "Roley.ai",
+      position: "Software Developer",
+      duration: "2025 - Present",
+      techs: ["Next.js", "React Native", "iOS / EAS", "LiveKit", "Claude", "Supabase"],
+      fullViewLink: "/work?project_name=roley",
+    },
     {
       company: "Wobjay CMS",
       position: "Front-End Lead Developer",
-      duration: "2021 - Present",
+      duration: "2021 - 2024",
       techs: ["React", "Next.js", "TailwindCSS"],
       fullViewLink: "/work?project_name=wobjay",
     },
@@ -190,19 +208,15 @@ const education = {
 const skills = {
   title: "My skills",
   description:
-    "My tech stack has a strong focus on JavaScript, TypeScript, React.js, and BurpSuite. I thrive in team environments, enjoy collaborating on challenging projects, and learning from other developers",
+    "My tech stack centers on TypeScript, React, and Next.js, with strong day-to-day use of AI tools — Claude in particular — as a core part of how I architect and ship. Experience also spans React Native, real-time voice (LiveKit), Supabase, and web security with BurpSuite.",
   skillList: [
     {
-      icon: <FaHtml5 />,
-      name: "html 5",
+      icon: <SiClaude />,
+      name: "Claude (Anthropic)",
     },
     {
-      icon: <FaCss3 />,
-      name: "css 3",
-    },
-    {
-      icon: <FaJs />,
-      name: "javascript",
+      icon: <SiTypescript />,
+      name: "typescript",
     },
     {
       icon: <FaReact />,
@@ -213,8 +227,20 @@ const skills = {
       name: "next.js",
     },
     {
-      icon: <SiTypescript />,
-      name: "typescript",
+      icon: <SiLivekit />,
+      name: "LiveKit",
+    },
+    {
+      icon: <SiSupabase />,
+      name: "Supabase",
+    },
+    {
+      icon: <SiExpo />,
+      name: "React Native / Expo",
+    },
+    {
+      icon: <SiIos />,
+      name: "iOS Deployments (EAS)",
     },
     {
       icon: <SiTailwindcss />,
@@ -223,6 +249,18 @@ const skills = {
     {
       icon: <FaNodeJs />,
       name: "node.js",
+    },
+    {
+      icon: <FaJs />,
+      name: "javascript",
+    },
+    {
+      icon: <FaHtml5 />,
+      name: "html 5",
+    },
+    {
+      icon: <FaCss3 />,
+      name: "css 3",
     },
     {
       icon: <SiBurpsuite />,

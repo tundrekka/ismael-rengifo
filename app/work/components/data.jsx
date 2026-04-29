@@ -5,17 +5,55 @@ const SoftHiglight = ({ children }) => {
 const allWorkItems = [
   {
     num: "01",
+    category: "frontend / ai",
+    title: "Roley.ai",
+    slug: "roley",
+    description: (
+      <>
+        AI-powered sales coaching platform — <SoftHiglight>{'"Sell Perfectly"'}</SoftHiglight>. As part of the engineering team, I have shipped most
+        features across the product surface and understand the system end-to-end:
+        {"\n"}- <SoftHiglight>Web app</SoftHiglight> (Next.js): playbooks, trainings, leaderboards, conversations analytics, door-to-door, remote
+        sales, voicemails and admin tooling.
+        {"\n"}- <SoftHiglight>Mobile app</SoftHiglight> (React Native + Expo): audio recording flows including continuous door-to-door mode that
+        auto-splits sessions into individual conversations. Handle <SoftHiglight>iOS deployments</SoftHiglight> via EAS / Expo (build, sign,
+        ship to TestFlight & App Store).
+        {"\n"}- <SoftHiglight>Voice AI</SoftHiglight>: integrated <SoftHiglight>LiveKit</SoftHiglight> agents for live practice calls between reps
+        and AI characters; wired the transcription pipeline (AssemblyAI) and Claude / OpenAI for coaching feedback.
+        {"\n"}- Heavy day-to-day use of <SoftHiglight>Claude</SoftHiglight> as a build partner — from architecture decisions to shipping production
+        code across web, mobile, and backend.
+      </>
+    ),
+    stack: [
+      { name: "Next.js" },
+      { name: "TypeScript" },
+      { name: "React Native" },
+      { name: "iOS / EAS" },
+      { name: "LiveKit" },
+      { name: "Supabase" },
+      { name: "Claude" },
+      { name: "TailwindCSS" },
+    ],
+    image: "/assets/work/roley-1.png",
+    live: "https://roley.ai",
+    github: "",
+    projectTime: "2025 - present",
+  },
+  {
+    num: "02",
     category: "frontend",
     title: "WobJay",
     slug: "wobjay",
     description: (
       <>
-        In this modern website builder, as the frontend team lead, I have driven the evolution of the product from its inception to its
-        current state. During this time, I have done things like:{"\n"} - <SoftHiglight>Designed</SoftHiglight> and implemented a scalable
-        and maintainable translation managament system, benefiting both the {"project's"} React app and the translation team.{" "}
-        <SoftHiglight>70%</SoftHiglight> reduction in new translation integration time by automating the detection of missing keys and
-        generating spreadsheets for translators. {"\n"}- Docker implementation to reduce backend rebuild and update time by{" "}
-        <SoftHiglight>65%</SoftHiglight>, streamlining the onboarding of new developers to the team
+        <SoftHiglight>Note:</SoftHiglight> project currently paused per CEO directive.
+        {"\n"}
+        {"\n"}Modern website builder where I served as Front-End Lead, driving the evolution of the product from its inception. During this
+        time, I:
+        {"\n"} - <SoftHiglight>Designed</SoftHiglight> and implemented a scalable and maintainable translation management system, benefiting both
+        the {"project's"} React app and the translation team. <SoftHiglight>70%</SoftHiglight> reduction in new translation integration time by
+        automating the detection of missing keys and generating spreadsheets for translators.
+        {"\n"}- Docker implementation to reduce backend rebuild and update time by <SoftHiglight>65%</SoftHiglight>, streamlining the onboarding
+        of new developers to the team.
       </>
     ),
     stack: [
@@ -29,11 +67,10 @@ const allWorkItems = [
     image: "/assets/work/wobjay-cover-thumb.png",
     live: "https://wobjay.com/",
     github: "",
-    // ! improved these repeted properties, this is used also in resume>experience page
-    projectTime: "year 2021 - present",
+    projectTime: "2021 - 2024",
   },
   {
-    num: "02",
+    num: "03",
     category: "frontend",
     title: "Heroes Fest",
     slug: "heroes-fest",
@@ -56,7 +93,7 @@ const allWorkItems = [
     moreImages: [{ url: "/assets/work/heroes-fest-2021.png", label: "Landing Page" }],
   },
   {
-    num: "03",
+    num: "04",
     category: "frontend",
     title: "StyleGuide Builder",
     slug: "styleguide-builder",
@@ -73,7 +110,7 @@ const allWorkItems = [
     ],
   },
   {
-    num: "04",
+    num: "05",
     category: "frontend",
     title: "Keeper",
     slug: "keeper",
@@ -87,7 +124,7 @@ const allWorkItems = [
     moreImages: [{ url: "/assets/work/keeper-empty-state.png", label: "Empty state" }],
   },
   {
-    num: "05",
+    num: "06",
     category: "frontend",
     title: "TIAA Bank",
     slug: "tiaa-bank",
@@ -100,7 +137,7 @@ const allWorkItems = [
     projectTime: "year 2021",
   },
   {
-    num: "06",
+    num: "07",
     category: "fullstack",
     title: "Amovlar website",
     slug: "amovlar",

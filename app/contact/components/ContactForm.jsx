@@ -13,7 +13,7 @@ const ErrorMessage = ({ message }) => {
 
 const LabelInput = ({ htmlFor, text }) => {
   return (
-    <label className="mb-2 text-sm text-white/80" htmlFor={htmlFor}>
+    <label className="mb-2 font-mono text-[10px] uppercase tracking-[0.22em] text-ink-dim" htmlFor={htmlFor}>
       {text}
     </label>
   );
@@ -100,21 +100,19 @@ const ContactForm = () => {
   };
   return (
     <>
-      <form onSubmit={handleSubmit} className="flex flex-col gap-6 rounded-xl bg-[#27272c] p-4 lg:p-10">
-        <h3
-          className={clsx("text-4xl text-accent", {
-            "animate-pulse": formLoading,
-          })}
-        >
-          <span>{"Let's"} work together</span>
-
-          {formLoading && (
-            <span className="ml-2 inline">
-              <Loader className="inline" />
-            </span>
-          )}
-        </h3>
-        <p className="text-white/60">Send me a message to start a new experience!</p>
+      <form onSubmit={handleSubmit} className="card-surface flex flex-col gap-6 p-6 lg:p-10">
+        <div>
+          <div className="section-eyebrow">/ Get in touch</div>
+          <h3 className={clsx("font-display text-4xl italic text-ink xl:text-5xl", { "animate-pulse": formLoading })}>
+            <span>{"Let's"} work together</span>
+            {formLoading && (
+              <span className="ml-2 inline">
+                <Loader className="inline" />
+              </span>
+            )}
+          </h3>
+          <p className="mt-3 text-[15px] text-ink-muted">Send me a message to start a new experience.</p>
+        </div>
         {/* input */}
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
           <div className="flex flex-col">
@@ -151,8 +149,8 @@ const ContactForm = () => {
         </div>
         {/* select */}
 
-        <label className="mb-2 text-sm text-white/80">
-          <p className="mb-2">Select a service</p>
+        <label className="flex flex-col">
+          <span className="mb-2 font-mono text-[10px] uppercase tracking-[0.22em] text-ink-dim">Select a service</span>
           <Select name="service">
             <SelectTrigger className="w-full">
               <SelectValue placeholder="Select a service" />
@@ -174,22 +172,17 @@ const ContactForm = () => {
         </div>
         {/* btn */}
         <div className="flex flex-wrap items-center gap-4">
-          <Button
+          <button
             type="submit"
             disabled={formLoading}
-            variant={"outline"}
-            size="md"
-            className={clsx("max-w-40", { "animate-pulse": formLoading })}
-          >
-            {formLoading ? (
-              <span>
-                <Loader />
-              </span>
-            ) : (
-              "Send message"
+            className={clsx(
+              "group inline-flex h-[52px] items-center gap-2 rounded-full bg-accent px-7 font-mono text-[12px] uppercase tracking-[0.22em] font-semibold text-primary transition-all hover:bg-accent-hover disabled:opacity-50",
+              { "animate-pulse": formLoading },
             )}
-          </Button>
-          <span className="text-sm text-white/60 md:ml-3">{statusMessage}</span>
+          >
+            {formLoading ? <Loader /> : <span>Send message →</span>}
+          </button>
+          <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-ink-muted md:ml-2">{statusMessage}</span>
         </div>
       </form>
     </>

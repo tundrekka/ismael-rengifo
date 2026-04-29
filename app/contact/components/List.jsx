@@ -41,23 +41,23 @@ const List = () => {
     <>
       {info.map((item, index) => {
         return (
-          <li key={index} style={{ alignSelf: "start" }} className="flex items-center gap-4 md:gap-6">
-            <div className="flex h-[42px] w-[42px] items-center justify-center rounded-md bg-[#27272c] text-accent xl:h-[60px] xl:w-[60px]">
-              <div className="flex text-[22px] md:text-[28px]">
-                <button
-                  aria-label={item.title}
-                  onClick={item.title === "Email" ? () => handleCopy(item.description) : undefined}
-                  className="text-white/70 hover:text-accent"
-                >
-                  {item.icon}
-                </button>
-              </div>
+          <li key={index} style={{ alignSelf: "start" }} className="flex w-full items-center gap-4 md:gap-5">
+            <div className="flex h-[52px] w-[52px] shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] text-accent xl:h-[56px] xl:w-[56px]">
+              <button
+                aria-label={item.title}
+                onClick={item.title === "Email" ? () => handleCopy(item.description) : undefined}
+                className="flex text-[18px] text-ink-muted transition-colors hover:text-accent"
+              >
+                {item.icon}
+              </button>
             </div>
             <div className="relative flex-1">
-              <p className="text-white/60">{item.title}</p>
-              <h3 className="text-md md:text-xl">{item.description}</h3>
+              <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-ink-dim">{item.title}</p>
+              <h3 className="mt-1 text-[15px] text-ink md:text-base">{item.description}</h3>
               {copied && item.title === "Email" && (
-                <div className="absolute right-0 top-[6px] text-xs text-green-500 lg:text-sm">Copied to clipboard!</div>
+                <div className="absolute right-0 top-0 font-mono text-[10px] uppercase tracking-[0.18em] text-accent">
+                  Copied!
+                </div>
               )}
             </div>
           </li>

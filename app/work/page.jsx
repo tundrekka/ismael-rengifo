@@ -7,15 +7,15 @@ export const metadata = {
 
 const Work = () => {
   return (
-    <div
-      initial={{ opacity: 0 }}
-      animate={{
-        opacity: 1,
-        transition: { delay: 0, duration: 0.3, ease: "easeIn" },
-      }}
-      className="flex min-h-[80vh] flex-col justify-center py-12 xl:px-0"
-    >
-      <div className="flex flex-col xl:flex-row xl:gap-[30px]">
+    <div className="flex min-h-[80vh] flex-col justify-start py-10 xl:py-12 xl:px-0">
+      {/* page header */}
+      <div className="mb-10 xl:mb-14">
+        <div className="section-eyebrow">/ Work</div>
+        <h1 className="font-display text-5xl italic tracking-tight text-ink xl:text-7xl">
+          Selected work.
+        </h1>
+      </div>
+      <div className="flex flex-col xl:flex-row xl:gap-12">
         <WorksWrapper />
       </div>
     </div>

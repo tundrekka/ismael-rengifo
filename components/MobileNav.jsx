@@ -5,9 +5,11 @@ import { CiMenuFries } from "react-icons/ci";
 import { navLinks } from "@/app/constants";
 import Link from "next/link";
 import DownloadCV from "@/components/DownloadCV";
+import { useT } from "@/lib/i18n/LanguageProvider";
 
 const MobileNav = () => {
   const pathname = usePathname();
+  const { t } = useT();
   return (
     <Sheet>
       <SheetTrigger className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] backdrop-blur-md transition-colors hover:border-accent/40">
@@ -22,7 +24,7 @@ const MobileNav = () => {
                 Ismael<span className="text-accent">.</span>
               </h1>
               <span className="mt-2 inline-block font-mono text-[10px] uppercase tracking-[0.3em] text-ink-dim">
-                Software Dev
+                {t("header.tagline")}
               </span>
             </Link>
           </SheetClose>
@@ -39,7 +41,7 @@ const MobileNav = () => {
                     active ? "text-accent" : "text-ink hover:text-accent"
                   }`}
                 >
-                  {link.name}
+                  {t(`nav.${link.name}`)}
                   {active && (
                     <span className="absolute -left-6 top-1/2 h-1.5 w-1.5 -translate-y-1/2 rounded-full bg-accent shadow-[0_0_12px_rgba(0,255,153,0.6)]" />
                   )}

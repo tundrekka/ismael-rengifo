@@ -1,35 +1,35 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { IoMdOpen } from "react-icons/io";
-import { allWorkItems } from "./data";
+import { getAllWorkItems } from "./data";
 import SwipperClient from "./SwipperClient";
 import ButtonsClient from "./ButtonsClient";
 import { PortfolioSkeleton } from "@/components/SkeletonLoader";
+import { useT } from "@/lib/i18n/LanguageProvider";
 
 const ContentClient = () => {
   const params = useSearchParams();
   const projectSlug = params.get("project_name");
+  const { t, locale } = useT();
+
+  const allWorkItems = useMemo(() => getAllWorkItems(t, locale), [t, locale]);
 
   const [selectedProject, setProject] = useState(null);
   const [projectsState, setProjects] = useState(allWorkItems);
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    const project = allWorkItems.find((item) => {
-      return item.slug === projectSlug;
-    });
+    const project = allWorkItems.find((item) => item.slug === projectSlug);
     const finalProject = project ? project : allWorkItems[0];
     setProject(finalProject);
     if (projectSlug) {
-      // look for the slug and place it first
-      setProjects([finalProject, ...allWorkItems.filter((item, index) => item.slug !== projectSlug)]);
+      setProjects([finalProject, ...allWorkItems.filter((item) => item.slug !== projectSlug)]);
     } else {
-      // setProjects(externalProjects);
+      setProjects(allWorkItems);
     }
     setIsLoaded(true);
-    return () => {};
-  }, []);
+  }, [allWorkItems, projectSlug]);
 
   if (!selectedProject) return <PortfolioSkeleton />;
   return (
@@ -86,7 +86,7 @@ const ContentClient = () => {
           {selectedProject.moreImages && (
             <details className="z-20 rounded-xl border border-white/[0.06] bg-white/[0.02] p-3">
               <summary className="cursor-pointer font-mono text-[11px] uppercase tracking-[0.18em] text-ink-dim hover:text-ink">
-                More images
+                {t("work.moreImages")}
               </summary>
               {selectedProject.moreImages.map((image, index) => (
                 <p className="mt-2" key={index + image.url}>

@@ -1,11 +1,11 @@
 "use client";
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useState } from "react";
 import { Loader } from "lucide-react";
 import clsx from "clsx";
+import { useT } from "@/lib/i18n/LanguageProvider";
 
 const ErrorMessage = ({ message }) => {
   return <span className="mt-2 text-xs text-red-400">{message}</span>;
@@ -19,51 +19,32 @@ const LabelInput = ({ htmlFor, text }) => {
   );
 };
 
-// main component
 const ContactForm = () => {
+  const { t } = useT();
   const [formLoading, setFormLoading] = useState(false);
   const [statusMessage, setStatusMessage] = useState("");
   const [fieldsWithError, setFieldsWithError] = useState({});
+
   const handleSubmit = async (event) => {
     event.preventDefault();
-    var data = new FormData(event.target);
-    // setFormLoading(true);
-    // setStatusMessage("");
-    // setFieldsWithError({});
+    const data = new FormData(event.target);
+    const errorsObj = {};
 
-    // await new Promise((resolve) => setTimeout(resolve, 2000));
-    // setFormLoading(false);
-
-    // validations to firt name and email, start
-    let errorsObj = {};
-    const validations = () => {
-      if (!data.get("firstname")) {
-        errorsObj.firstname = "This field is required";
-      }
-      if (!data.get("email")) {
-        errorsObj.email = "This field is required";
-      }
-
-      // validate name is only letters and spaces
-      if (data.get("firstname") && !/^[a-zA-Z\s]*$/.test(data.get("firstname"))) {
-        errorsObj.firstname = "Only letters and spaces";
-      }
-
-      // validate email
-      if (data.get("email") && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.get("email"))) {
-        errorsObj.email = "Invalid email";
-      }
-    };
-    validations();
+    if (!data.get("firstname")) errorsObj.firstname = t("contact.form.errors.required");
+    if (!data.get("email")) errorsObj.email = t("contact.form.errors.required");
+    if (data.get("firstname") && !/^[a-zA-ZÀ-ÿ\s]*$/.test(data.get("firstname"))) {
+      errorsObj.firstname = t("contact.form.errors.onlyLetters");
+    }
+    if (data.get("email") && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.get("email"))) {
+      errorsObj.email = t("contact.form.errors.invalidEmail");
+    }
 
     if (Object.keys(errorsObj).length > 0) {
       setFieldsWithError(errorsObj);
-      setStatusMessage("Please check the form for errors");
+      setStatusMessage(t("contact.form.errors.checkForm"));
       return;
     }
-    // end validations
 
-    // start the form submission
     setFormLoading(true);
     setStatusMessage("");
     setFieldsWithError({});
@@ -71,121 +52,119 @@ const ContactForm = () => {
     fetch("https://formspree.io/f/xovqzlql", {
       method: "POST",
       body: data,
-      headers: {
-        Accept: "application/json",
-      },
+      headers: { Accept: "application/json" },
     })
       .then((response) => {
         if (response.ok) {
           event.target.reset();
-          setStatusMessage("Thanks for your submission!");
+          setStatusMessage(t("contact.form.success"));
         } else {
-          console.log("error");
           response.json().then((data) => {
             if (Object.hasOwn(data, "errors")) {
-              errorsFormSpree = data["errors"].map((error) => error["message"]).join(", ");
+              const errorsFormSpree = data["errors"].map((error) => error["message"]).join(", ");
               setStatusMessage(errorsFormSpree);
             } else {
-              setStatusMessage("Oops! There was a problem submitting your form");
+              setStatusMessage(t("contact.form.errors.submit"));
             }
           });
         }
       })
-      .catch((error) => {
-        setStatusMessage("Oops! There was a problem submitting your form");
+      .catch(() => {
+        setStatusMessage(t("contact.form.errors.submit"));
       })
       .finally(() => {
         setFormLoading(false);
       });
   };
+
   return (
-    <>
-      <form onSubmit={handleSubmit} className="card-surface flex flex-col gap-6 p-6 lg:p-10">
-        <div>
-          <div className="section-eyebrow">/ Get in touch</div>
-          <h3 className={clsx("font-display text-4xl italic text-ink xl:text-5xl", { "animate-pulse": formLoading })}>
-            <span>{"Let's"} work together</span>
-            {formLoading && (
-              <span className="ml-2 inline">
-                <Loader className="inline" />
-              </span>
-            )}
-          </h3>
-          <p className="mt-3 text-[15px] text-ink-muted">Send me a message to start a new experience.</p>
-        </div>
-        {/* input */}
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-          <div className="flex flex-col">
-            <LabelInput htmlFor="firstname" text={"Firstname *"} />
-            <Input
-              className={clsx({ "border-red-400": fieldsWithError.firstname })}
-              name="firstname"
-              id="firstname"
-              type="text"
-              placeholder="Jhon"
-            />
-            {fieldsWithError.firstname && <ErrorMessage message={fieldsWithError.firstname} />}
-          </div>
-          <div className="flex flex-col">
-            <LabelInput htmlFor="lastname" text={"Lastname"} />
-            <Input name="lastname" id="lastname" type="text" placeholder="Doe" />
-          </div>
+    <form onSubmit={handleSubmit} className="card-surface flex flex-col gap-6 p-6 lg:p-10">
+      <div>
+        <div className="section-eyebrow">{t("contact.form.eyebrow")}</div>
+        <h3 className={clsx("font-display text-4xl italic text-ink xl:text-5xl", { "animate-pulse": formLoading })}>
+          <span>{t("contact.form.headline")}</span>
+          {formLoading && (
+            <span className="ml-2 inline">
+              <Loader className="inline" />
+            </span>
+          )}
+        </h3>
+        <p className="mt-3 text-[15px] text-ink-muted">{t("contact.form.sub")}</p>
+      </div>
 
-          <div className="flex flex-col">
-            <LabelInput htmlFor="email" text={"Email *"} />
-            <Input
-              className={clsx({ "border-red-400": fieldsWithError.email })}
-              name="email"
-              id="email"
-              type="email"
-              placeholder="example@gmail.com"
-            />
-            {fieldsWithError.email && <ErrorMessage message={fieldsWithError.email} />}
-          </div>
-          <div className="flex flex-col">
-            <LabelInput htmlFor="phone" text={"Phone"} />
-            <Input name="phone" id="phone" type="phone" placeholder="584248103737" />
-          </div>
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+        <div className="flex flex-col">
+          <LabelInput htmlFor="firstname" text={t("contact.form.firstname")} />
+          <Input
+            className={clsx({ "border-red-400": fieldsWithError.firstname })}
+            name="firstname"
+            id="firstname"
+            type="text"
+            placeholder={t("contact.form.firstnamePlaceholder")}
+          />
+          {fieldsWithError.firstname && <ErrorMessage message={fieldsWithError.firstname} />}
         </div>
-        {/* select */}
-
-        <label className="flex flex-col">
-          <span className="mb-2 font-mono text-[10px] uppercase tracking-[0.22em] text-ink-dim">Select a service</span>
-          <Select name="service">
-            <SelectTrigger className="w-full">
-              <SelectValue placeholder="Select a service" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectGroup>
-                <SelectItem value="web-development">Web Development</SelectItem>
-                <SelectItem value="pen-testing">Web Penetration Test</SelectItem>
-              </SelectGroup>
-            </SelectContent>
-          </Select>
-        </label>
-        {/* textarea */}
+        <div className="flex flex-col">
+          <LabelInput htmlFor="lastname" text={t("contact.form.lastname")} />
+          <Input name="lastname" id="lastname" type="text" placeholder={t("contact.form.lastnamePlaceholder")} />
+        </div>
 
         <div className="flex flex-col">
-          <LabelInput htmlFor="information" text={"Message"} />
+          <LabelInput htmlFor="email" text={t("contact.form.email")} />
+          <Input
+            className={clsx({ "border-red-400": fieldsWithError.email })}
+            name="email"
+            id="email"
+            type="email"
+            placeholder={t("contact.form.emailPlaceholder")}
+          />
+          {fieldsWithError.email && <ErrorMessage message={fieldsWithError.email} />}
+        </div>
+        <div className="flex flex-col">
+          <LabelInput htmlFor="phone" text={t("contact.form.phone")} />
+          <Input name="phone" id="phone" type="phone" placeholder={t("contact.form.phonePlaceholder")} />
+        </div>
+      </div>
 
-          <Textarea id="information" name="description-message" className="h-[200px]" placeholder="Type your message here." />
-        </div>
-        {/* btn */}
-        <div className="flex flex-wrap items-center gap-4">
-          <button
-            type="submit"
-            disabled={formLoading}
-            className={clsx(
-              "group inline-flex h-[52px] items-center gap-2 rounded-full bg-accent px-7 font-mono text-[12px] uppercase tracking-[0.22em] font-semibold text-primary transition-all hover:bg-accent-hover disabled:opacity-50",
-              { "animate-pulse": formLoading },
-            )}
-          >
-            {formLoading ? <Loader /> : <span>Send message →</span>}
-          </button>
-          <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-ink-muted md:ml-2">{statusMessage}</span>
-        </div>
-      </form>
-    </>
+      <label className="flex flex-col">
+        <span className="mb-2 font-mono text-[10px] uppercase tracking-[0.22em] text-ink-dim">{t("contact.form.selectService")}</span>
+        <Select name="service">
+          <SelectTrigger className="w-full">
+            <SelectValue placeholder={t("contact.form.selectService")} />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup>
+              <SelectItem value="web-development">{t("contact.form.services.web")}</SelectItem>
+              <SelectItem value="pen-testing">{t("contact.form.services.pen")}</SelectItem>
+            </SelectGroup>
+          </SelectContent>
+        </Select>
+      </label>
+
+      <div className="flex flex-col">
+        <LabelInput htmlFor="information" text={t("contact.form.message")} />
+        <Textarea
+          id="information"
+          name="description-message"
+          className="h-[200px]"
+          placeholder={t("contact.form.messagePlaceholder")}
+        />
+      </div>
+
+      <div className="flex flex-wrap items-center gap-4">
+        <button
+          type="submit"
+          disabled={formLoading}
+          className={clsx(
+            "group inline-flex h-[52px] items-center gap-2 rounded-full bg-accent px-7 font-mono text-[12px] uppercase tracking-[0.22em] font-semibold text-primary transition-all hover:bg-accent-hover disabled:opacity-50",
+            { "animate-pulse": formLoading },
+          )}
+        >
+          {formLoading ? <Loader /> : <span>{t("contact.form.send")}</span>}
+        </button>
+        <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-ink-muted md:ml-2">{statusMessage}</span>
+      </div>
+    </form>
   );
 };
 

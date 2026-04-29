@@ -2,9 +2,11 @@
 import { navLinks } from "@/app/constants";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import { useT } from "@/lib/i18n/LanguageProvider";
 
 const Nav = () => {
   const pathname = usePathname();
+  const { t } = useT();
   return (
     <nav className="flex items-center gap-1 rounded-full border border-white/[0.06] bg-white/[0.02] p-1 backdrop-blur-md">
       {navLinks.map((link, index) => {
@@ -23,7 +25,7 @@ const Nav = () => {
                 className="absolute inset-0 rounded-full border border-white/10 bg-white/[0.05]"
               />
             )}
-            <span className="relative">{link.name}</span>
+            <span className="relative">{t(`nav.${link.name}`)}</span>
           </Link>
         );
       })}

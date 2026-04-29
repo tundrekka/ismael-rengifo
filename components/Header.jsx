@@ -3,9 +3,12 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import Nav from "@/components/Nav";
 import MobileNav from "@/components/MobileNav";
+import LanguageToggle from "@/components/LanguageToggle";
+import { useT } from "@/lib/i18n/LanguageProvider";
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
+  const { t } = useT();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -43,19 +46,21 @@ const Header = () => {
                 Ismael<span className="text-accent">.</span>
               </span>
               <span className="mt-0.5 font-mono text-[9px] uppercase tracking-[0.28em] text-ink-dim">
-                Software Dev
+                {t("header.tagline")}
               </span>
             </div>
           </div>
         </Link>
 
         {/* desktop nav */}
-        <div className="hidden items-center gap-6 xl:flex">
+        <div className="hidden items-center gap-4 xl:flex">
           <Nav />
+          <LanguageToggle />
         </div>
 
         {/* mobile nav */}
-        <div className="xl:hidden">
+        <div className="flex items-center gap-3 xl:hidden">
+          <LanguageToggle />
           <MobileNav />
         </div>
       </div>

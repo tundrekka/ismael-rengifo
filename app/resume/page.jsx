@@ -1,49 +1,45 @@
+"use client";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { IoMdOpen } from "react-icons/io";
-import { about, education, experience, skills } from "./data";
+import { getResumeData } from "./data";
 import CertificateModal from "@/components/ImageModal";
 import Link from "next/link";
-
-export const metadata = {
-  title: "Ismael Rengifo | Resume",
-  description: "My portfolio Works",
-};
+import { useT } from "@/lib/i18n/LanguageProvider";
 
 const Resume = () => {
+  const { t, locale } = useT();
+  const { about, experience, education, skills } = getResumeData(t, locale);
+
   return (
     <div className="flex min-h-[80vh] items-start justify-center py-10 xl:py-12">
       <div className="container mx-auto">
-        {/* page header */}
         <div className="mb-12">
-          <div className="section-eyebrow">/ Resume</div>
-          <h1 className="font-display text-5xl italic tracking-tight text-ink xl:text-7xl">
-            The credentials.
-          </h1>
+          <div className="section-eyebrow">{t("resume.eyebrow")}</div>
+          <h1 className="font-display text-5xl italic tracking-tight text-ink xl:text-7xl">{t("resume.headline")}</h1>
         </div>
 
         <Tabs defaultValue="education" className="flex flex-col gap-12 xl:flex-row xl:gap-16">
           <TabsList className="flex w-full flex-col gap-2 xl:w-[320px]">
             <TabsTrigger value="education">
               <span className="text-ink-faint">01</span>
-              <span>Education</span>
+              <span>{t("resume.tabs.education")}</span>
             </TabsTrigger>
             <TabsTrigger value="experience">
               <span className="text-ink-faint">02</span>
-              <span>Experience</span>
+              <span>{t("resume.tabs.experience")}</span>
             </TabsTrigger>
             <TabsTrigger value="skills">
               <span className="text-ink-faint">03</span>
-              <span>Skills</span>
+              <span>{t("resume.tabs.skills")}</span>
             </TabsTrigger>
             <TabsTrigger value="about">
               <span className="text-ink-faint">04</span>
-              <span>About me</span>
+              <span>{t("resume.tabs.about")}</span>
             </TabsTrigger>
           </TabsList>
 
-          {/* content */}
           <div className="min-h-[70vh] w-full">
             {/* experience */}
             <TabsContent value="experience" className="w-full">
@@ -52,15 +48,14 @@ const Resume = () => {
                 <p className="mx-auto max-w-[600px] text-[15px] text-ink-muted xl:mx-0">
                   {experience.description}
                   <span>
-                    {" "}
-                    Check my{" "}
+                    {t("resume.experience.upworkPrefix")}
                     <a
                       className="text-accent underline underline-offset-4 hover:text-accent-hover"
                       rel="noopener noreferer"
                       target="_blank"
                       href="https://www.upwork.com/freelancers/~012e8787e1e4b6df2e"
                     >
-                      Upwork Profile
+                      {t("resume.experience.upworkLink")}
                     </a>
                   </span>
                 </p>
@@ -72,17 +67,13 @@ const Resume = () => {
                           <span className="absolute right-5 top-5 text-ink-dim transition-colors group-hover:text-accent">
                             <IoMdOpen className="inline-block" />
                           </span>
-                          <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-ink-dim">
-                            {item.duration}
-                          </span>
+                          <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-ink-dim">{item.duration}</span>
                           <h3 className="min-h-[56px] max-w-[260px] text-center font-display text-2xl italic text-ink lg:text-left">
                             {item.position}
                           </h3>
                           <div className="flex items-center gap-2.5">
                             <span className="h-1 w-1 rounded-full bg-ink-faint"></span>
-                            <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-ink-muted">
-                              {item.company}
-                            </p>
+                            <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-ink-muted">{item.company}</p>
                           </div>
                           {item.techs && (
                             <ul className="flex flex-wrap gap-2 text-[10px] text-ink-dim">
@@ -119,9 +110,7 @@ const Resume = () => {
                             <IoMdOpen className="inline-block" />
                           </span>
                           <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-ink-dim">{item.duration}</p>
-                          <h3 className="min-h-[56px] max-w-[260px] text-center text-lg text-ink lg:text-left">
-                            {item.degreeJsx}
-                          </h3>
+                          <h3 className="min-h-[56px] max-w-[260px] text-center text-lg text-ink lg:text-left">{item.degreeJsx}</h3>
                           <div className="flex items-center gap-2.5">
                             <span className="h-1 w-1 rounded-full bg-ink-faint"></span>
                             <p className="text-left font-mono text-[11px] uppercase tracking-[0.18em] text-ink-muted">
@@ -175,9 +164,7 @@ const Resume = () => {
                       key={index}
                       className="flex flex-wrap items-center justify-center gap-3 border-b border-white/[0.06] pb-4 xl:justify-start"
                     >
-                      <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-ink-dim">
-                        {item.fieldName}
-                      </span>
+                      <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-ink-dim">{item.fieldName}</span>
                       <span className="text-base text-ink">{item.fieldValue}</span>
                     </li>
                   ))}

@@ -38,7 +38,7 @@ export const PERSONAL_INFO = {
     workHours: 5740,
   },
   curriculumsLinks: {
-    english: "/files/Ismael-Rengifo-CV-english-new.pdf",
-    spanish: "/files/Ismael-Rengifo-CV-spanish-new.pdf",
+    english: "/files/Ismael-Rengifo-CV-english-2026-v1.pdf",
+    spanish: "/files/Ismael-Rengifo-CV-spanish-2026-v1.pdf",
   },
 };

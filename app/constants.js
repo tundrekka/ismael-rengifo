@@ -26,7 +26,7 @@ export const PERSONAL_INFO = {
   name: "Ismael",
   lastName: "Rengifo",
   profession: "Frontend Developer",
-  email: "ismaelrengifo.web@outlook.com",
+  email: "ismael@ismaelrengifo.com",
   phone: "(+58) 4248103737",
   discord: "tundranaik",
   languagesString: "English, Spanish",
